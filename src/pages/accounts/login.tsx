@@ -22,9 +22,11 @@ export default function Login() {
         <Image
           alt={'Login Image'}
           src={
-            'logosn.png'
+            '/logosn.png'
           }
         />
+
+
         </Box>
         <Stack spacing={4} w={'full'} maxW={'md'}>
 
@@ -51,15 +53,17 @@ export default function Login() {
           </Stack>
         </Stack>
       </Flex>
+
       <Flex flex={1}>
         <Image
           alt={'Login Image'}
           objectFit={'cover'}
           src={
-            'login.jpg'
+            '/login.jpg'
           }
         />
       </Flex>
+      
     </Stack>
   );
 }

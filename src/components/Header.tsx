@@ -28,7 +28,12 @@ export function Header() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box
+    position='sticky'
+    top='0'
+    width="100%"
+    zIndex='docked'
+    >
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -91,19 +96,22 @@ export function Header() {
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
-            href={'/login'}>
+            href={'/accounts/login'}>
             Entrar
           </Button>
           <Button
+            as={'a'}
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
             color={'white'}
             bg={'pink.400'}
-            href={'#'}
+
             _hover={{
               bg: 'pink.300',
-            }}>
+            }}
+            href={'/accounts/register'}
+            >
             Inscrever-se
           </Button>
         </Stack>
@@ -288,12 +296,12 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Find Work',
+    label: 'Ferramentas',
     children: [
       {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '#',
+        label: 'Preditor de peso',
+        subLabel: 'Calcule o peso dos animais a partir do PT',
+        href: '/weight',
       },
       {
         label: 'Freelance Projects',
