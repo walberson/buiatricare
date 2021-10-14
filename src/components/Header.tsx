@@ -281,19 +281,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/',
   },
   {
-    label: 'Inspiration',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '#',
-      },
-    ],
+    label: 'Sobre',
+    href: '/about',
   },
   {
     label: 'Ferramentas',
@@ -301,18 +290,14 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: 'Preditor de peso',
         subLabel: 'Calcule o peso dos animais a partir do PT',
-        href: '/weight',
+        href: '/tools/weight',
       },
       {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
+        label: 'Escore Apgar',
+        subLabel: 'Avaliar a vitalidade de bezerros recém-nascidos',
+        href: '/tools/apgar',
       },
     ],
-  },
-  {
-    label: 'Learn Design',
-    href: '#',
   },
   {
     label: 'Contato',
