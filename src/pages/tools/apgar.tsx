@@ -4,13 +4,13 @@ import {
     Text,
     Button,
     VStack,
-    Stack
+    Stack,
+    UnorderedList,
+    ListItem
 
 } from "@chakra-ui/react"
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import { useState } from "react";
-
-import { LoremIpsum } from "react-lorem-ipsum"
+import { useEffect, useState } from "react";
 
 interface stepsProps {
     label: string,
@@ -52,11 +52,15 @@ const steps: stepsProps[] = [
 
 export default function Apgar() {
 
+    const [stepSelection, setStepSelection] = useState([0, 0, 0, 0])
 
-    const [selectOption, setSelectOption] = useState(0)
     const [total, setTotal] = useState(0)
 
+    const totalCalc = stepSelection.reduce((total, currentElement) => total + currentElement)
 
+    useEffect(() => {
+        setTotal(totalCalc)
+    }, [totalCalc]);
 
     const { nextStep, prevStep, reset, activeStep } = useSteps({
         initialStep: 0,
@@ -64,48 +68,46 @@ export default function Apgar() {
 
 
 
-    async function selectOption1() {
-        console.log(selectOption)
-        await setSelectOption(2)
-        console.log(selectOption)
+    function selectOption1() {
 
-        
-
+        let newStep = stepSelection
+        newStep[activeStep] = 2
+        setStepSelection(newStep)
         nextStep()
 
 
     }
+
     function selectOption2() {
-        
-        setSelectOption(1)
-
-        setTotal(total + selectOption)
+        let newStep = stepSelection
+        newStep[activeStep] = 1
+        setStepSelection(newStep)
         nextStep()
-        console.log(total)
+
     }
+
     function selectOption3() {
-        setSelectOption(0)
-
-
-        setTotal(total + selectOption)
+        let newStep = stepSelection
+        newStep[activeStep] = 0
+        setStepSelection(newStep)
         nextStep()
-        console.log(total)
+
     }
+
     function backStep() {
-        setTotal(total - selectOption)
-        setSelectOption(0)
+
+        const newStep = stepSelection
+        newStep[activeStep] = 0
+        setStepSelection(newStep)
 
         prevStep()
-        console.log(total)
-    }
-    function resetSteps() {
-        setTotal(0)
-        setSelectOption(0)
-        reset()
 
-        
-        console.log(total)
-        console.log(selectOption)
+    }
+
+    function resetSteps() {
+
+        setStepSelection([0, 0, 0, 0])
+        reset()
 
     }
 
@@ -158,19 +160,93 @@ export default function Apgar() {
                     ))}
                 </Steps>
                 {activeStep === 4 ? (
-                    <div>
-                        <Heading>
-                            Resultado
-                        </Heading>
-                        <Text>
-                            {total}
-                        </Text>
-                        <Button
-                            onClick={resetSteps}
-                        >Reiniciar
 
-                        </Button>
-                    </div>
+                    (total < 4) ? (
+                        <Stack
+                            direction="column"
+                            align="center"
+                            spacing="2"
+                        >
+                            <Heading
+                                size='md'>
+                                Resultado
+                            </Heading>
+                            <Heading
+                                size='lg'
+                                color='red.500'
+                            >
+                                Score APGAR {total}
+                            </Heading>
+
+                            <UnorderedList>
+                                <ListItem>Vitalidade fraca ou ausente</ListItem>
+                                <ListItem>Recém-nascido com pouca vitalidade,<br />inviável e com
+                                    asfixia severa</ListItem>
+                                <ListItem>Medidas de Emergência</ListItem>
+                            </UnorderedList>
+
+                            <Button
+                                onClick={resetSteps}
+                            >Reiniciar
+
+                            </Button>
+                        </Stack>
+                    ) : ((total < 7) ? (
+                        <Stack
+                            direction="column"
+                        >
+                            <Heading
+                                size='md'>
+                                Resultado
+                            </Heading>
+                            <Heading
+                                size='lg'
+                                color='yellow.500'
+                            >
+                                Score APGAR {total}
+                            </Heading>
+
+                            <UnorderedList
+                            >
+                                <ListItem>Vitalidade Diminuída</ListItem>
+                                <ListItem>Bezerro deprimido e com asfixia de <br />intensidade leve a moderada</ListItem>
+                                <ListItem>Medidas de Urgência</ListItem>
+                            </UnorderedList>
+
+                            <Button
+                                onClick={resetSteps}
+                            >Reiniciar
+
+                            </Button>
+                        </Stack>
+                    ) : (
+                        <Stack
+                            direction="column"
+                        >
+                            <Heading
+                                size='md'>
+                                Resultado
+                            </Heading>
+                            <Heading
+                                size='lg'
+                                color='green.500'
+                            >
+                                Score APGAR {total}
+                            </Heading>
+                            <UnorderedList>
+                                <ListItem>Boa vitalidade</ListItem>
+                                <ListItem>Paciente sadio e sem asfixia</ListItem>
+                                <ListItem>Sem intervenção</ListItem>
+                            </UnorderedList>
+
+                            <Button
+                                onClick={resetSteps}
+                            >Reiniciar
+
+                            </Button>
+                        </Stack>
+                    ))
+
                 ) : (
                     <Stack
                         direction="row"
