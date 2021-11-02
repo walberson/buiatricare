@@ -1,6 +1,5 @@
 import {
-    Input,
-    Flex,
+    Box,
     Heading,
     Modal,
     ModalOverlay,
@@ -14,7 +13,6 @@ import {
     Select,
     Stack,
     HStack,
-    VStack,
     Button,
     useDisclosure,
     Image,
@@ -24,46 +22,32 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-
-import { useState } from 'react';
-
-
+import { useState } from 'react'
 
 export default function Weight() {
-
     const [thoracicPerimeter, setThoracicPerimeter] = useState(0)
 
     const [species, setSpecies] = useState('')
 
     const [weight, setWeight] = useState(0)
 
-
-
-
     function testSpecies() {
-
-        
         if (species == 'Bubalino') {
-            setWeight(-248.441 + (thoracicPerimeter * 3.158))
+            setWeight(-248.441 + thoracicPerimeter * 3.158)
         }
         if (species == 'Bovino') {
             setWeight(5000)
         }
-
     }
 
-
-
-
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     function result() {
         event.preventDefault()
         onOpen()
         testSpecies()
-
     }
 
     return (
@@ -74,29 +58,47 @@ export default function Weight() {
             border-radius={8}
             flexDir="column"
             align="center"
-            spacing='6'
-
+            spacing="6"
         >
-            <Heading size='lg'>
-                Predição do peso vivo de bezerros por morfometria
+            <Box boxSize="40">
+                <Image alt="Logo small" src="/logoSmall.png" />
+            </Box>
+            <Stack direction="row" spacing="2">
+                <Heading color="#EF8E9E">Preditor de</Heading>
+                <Heading color="#7EBAAD">Peso</Heading>
+            </Stack>
+            <Image
+                src="ptCalf.gif"
+                boxSize="300px"
+                borderRadius="lg"
+                alt="Segun Adebayo"
+            />
+            <Text fontSize="md">
+                O perímetro torácico é a melhor variável escolhida como
+                preditora do peso vivo de bezerros
+            </Text>
+            <Heading size="md" color="gray">
+                Modo de uso
             </Heading>
-            <Image src="ptCalf.gif" boxSize="300px" borderRadius="lg" alt="Segun Adebayo" />
-            <Text fontSize="md">O perímetro torácico é a melhor variável escolhida como preditora do
-                peso vivo de bezerros</Text>
-            <Heading size='md' color='gray' >Modo de uso</Heading>
-            <Text fontSize="md" textAlign='justify' >Passe a fita métrica caudalmente à escápula passando pelo esterno
-                e pelos processos espinhais das vértebras torácicas envolvendo todo tórax do animal</Text>
-            <HStack
-                spacing='10'
-                align="end"
-            >
+            <Text fontSize="md" textAlign="justify">
+                Passe a fita métrica caudalmente à escápula passando pelo
+                esterno e pelos processos espinhais das vértebras torácicas
+                envolvendo todo tórax do animal
+            </Text>
+            <HStack spacing="10" align="end">
                 <form>
-                    <FormControl >
-                        <FormLabel > Digite o perímetro torácico do animal &#40;cm&#41;</FormLabel>
+                    <FormControl>
+                        <FormLabel>
+                            {' '}
+                            Digite o perímetro torácico do animal &#40;cm&#41;
+                        </FormLabel>
 
                         <NumberInput
-                            size='lg' min={80}
-                            onChange={(thoracicPerimeter) => setThoracicPerimeter(Number(thoracicPerimeter))}
+                            size="lg"
+                            min={80}
+                            onChange={(thoracicPerimeter) =>
+                                setThoracicPerimeter(Number(thoracicPerimeter))
+                            }
                             value={thoracicPerimeter}
                         >
                             <NumberInputField />
@@ -106,12 +108,14 @@ export default function Weight() {
                             </NumberInputStepper>
                         </NumberInput>
                     </FormControl>
-                    <FormControl >
-                        <FormLabel > Selecione a espécie</FormLabel>
+                    <FormControl>
+                        <FormLabel> Selecione a espécie</FormLabel>
                         <Select
-                            size='lg'
+                            size="lg"
                             placeholder="Espécie"
-                            onChange={(species) => setSpecies(String(species.target.value))}
+                            onChange={(species) =>
+                                setSpecies(String(species.target.value))
+                            }
                         >
                             <option value="Bubalino">Bubalino</option>
                             <option value="Bovino">Bovino</option>
@@ -119,38 +123,38 @@ export default function Weight() {
                             <option value="Ovino">Ovino</option>
                         </Select>
                         <Button
-                            mt='6'
-                            colorScheme='pink'
+                            mt="6"
+                            colorScheme="pink"
                             onClick={result}
-                            type='submit'
-                            refresh='false'
-                        >Calcular Peso</Button>
+                            type="submit"
+                            refresh="false"
+                        >
+                            Calcular Peso
+                        </Button>
                     </FormControl>
                 </form>
             </HStack>
 
-
-
-
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Predição do peso vivo de bezerros por morfometria</ModalHeader>
+                    <ModalHeader>
+                        Predição do peso vivo de bezerros por morfometria
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        {
-                            (species==='') ? 
-                                <div>
-                                    <Heading>Selecione uma espécie</Heading>
-                                </div>
-                             : 
-
-                             <div>
-                             <Heading>O peso do seu animal é:</Heading>
-                             <Heading color='pink.600' >{Math.round(weight)}Kg</Heading>
-                             </div>
-                            
-                        }
+                        {species === '' ? (
+                            <div>
+                                <Heading>Selecione uma espécie</Heading>
+                            </div>
+                        ) : (
+                            <div>
+                                <Heading>O peso do seu animal é:</Heading>
+                                <Heading color="pink.600">
+                                    {Math.round(weight)}Kg
+                                </Heading>
+                            </div>
+                        )}
                     </ModalBody>
 
                     <ModalFooter>

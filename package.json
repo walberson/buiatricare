@@ -1,33 +1,41 @@
 {
-  "name": "buiatriccare",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@chakra-ui/icons": "^1.0.15",
-    "@chakra-ui/react": "^1.6.9",
-    "@emotion/react": "11",
-    "@emotion/styled": "11",
-    "chakra-ui-steps": "^1.3.0",
-    "faunadb": "^4.4.1",
-    "framer-motion": "4",
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^7.17.2",
-    "react-lorem-ipsum": "^1.4.9"
-  },
-  "devDependencies": {
-    "@types/node": "^16.10.3",
-    "@types/react": "^17.0.27",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "react-icons": "^4.3.1",
-    "typescript": "^4.4.3"
-  }
+    "name": "buiatriccare",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@chakra-ui/icons": "^1.0.15",
+        "@chakra-ui/react": "^1.6.9",
+        "@emotion/react": "11",
+        "@emotion/styled": "11",
+        "chakra-ui-steps": "^1.3.0",
+        "faunadb": "^4.4.1",
+        "framer-motion": "4",
+        "next": "11.1.2",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-hook-form": "^7.17.2",
+        "react-lorem-ipsum": "^1.4.9"
+    },
+    "devDependencies": {
+        "@types/node": "^16.10.3",
+        "@types/react": "^17.0.27",
+        "@typescript-eslint/eslint-plugin": "^5.1.0",
+        "@typescript-eslint/parser": "^5.1.0",
+        "eslint": "^8.1.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-config-next": "11.1.2",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.26.1",
+        "prettier": "^2.4.1",
+        "react-icons": "^4.3.1",
+        "typescript": "^4.4.3"
+    }
 }

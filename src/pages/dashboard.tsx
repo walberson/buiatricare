@@ -1,11 +1,10 @@
-import { Header } from "../components/Header";
+import { Header } from '../components/Header'
 
-export default function Dashboard () {
-    return(
+export default function Dashboard() {
+    return (
         <div>
-        <Header/>
+            <Header />
             <h1>Dashboard</h1>
-            </div>
-        
-     );
+        </div>
+    )
 }
