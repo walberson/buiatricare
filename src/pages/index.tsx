@@ -4,12 +4,23 @@ import { WithSpeechBubbles } from '../components/index/Testimonial'
 import { CallToActionWithVideo } from '../components/index/Hero'
 import { Create } from '../components/index/Create'
 
+import { useSession } from 'next-auth/react'
+import { Dashboard } from '../components/index/Dashboard'
+
 export default function Home() {
-    return (
-        <Flex flexDir="column">
-            <CallToActionWithVideo />
-            <Create />
-            <WithSpeechBubbles />
-        </Flex>
+    const { data: session } = useSession()
+
+    return session ? (
+        <>
+            <Dashboard name={session.user.name} />
+        </>
+    ) : (
+        <>
+            <Flex flexDir="column">
+                <CallToActionWithVideo />
+                <Create />
+                <WithSpeechBubbles />
+            </Flex>
+        </>
     )
 }
