@@ -23,8 +23,10 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
 } from '@chakra-ui/react'
+import Router from 'next/dist/client/router'
 
 import { useState } from 'react'
+import { RiArrowLeftCircleLine } from 'react-icons/ri'
 
 export default function Weight() {
     const [thoracicPerimeter, setThoracicPerimeter] = useState(0)
@@ -57,22 +59,22 @@ export default function Weight() {
             p="8"
             border-radius={8}
             flexDir="column"
-            align="center"
             spacing="6"
         >
-            <Box boxSize="40">
-                <Image alt="Logo small" src="/logoSmall.png" />
-            </Box>
-            <Stack direction="row" spacing="2">
-                <Heading color="#EF8E9E">Preditor de</Heading>
-                <Heading color="#7EBAAD">Peso</Heading>
+            <Stack spacing="2rem" direction="row" align="center">
+                <RiArrowLeftCircleLine size="3rem" onClick={Router.back} />
+
+                <Box>
+                    <Stack spacing="0" direction="row">
+                        <Heading textColor="#EF8E9E">Weight</Heading>
+                        <Heading color="#7EBAAD">Predict</Heading>
+                    </Stack>
+                    <Heading size="md" fontWeight="md">
+                        Calcule rapidamente o peso do seu animal
+                    </Heading>
+                </Box>
             </Stack>
-            <Image
-                src="ptCalf.gif"
-                boxSize="300px"
-                borderRadius="lg"
-                alt="Segun Adebayo"
-            />
+
             <Text fontSize="md">
                 O perímetro torácico é a melhor variável escolhida como
                 preditora do peso vivo de bezerros
@@ -118,9 +120,15 @@ export default function Weight() {
                             }
                         >
                             <option value="Bubalino">Bubalino</option>
-                            <option value="Bovino">Bovino</option>
-                            <option value="Caprino">Caprino</option>
-                            <option value="Ovino">Ovino</option>
+                            <option value="Bovino">
+                                Bovino (Raças Grandes)
+                            </option>
+                            <option value="Caprino">
+                                Bovino (Raças Médias){' '}
+                            </option>
+                            <option value="Ovino">
+                                Bovino (Raças Pequenas){' '}
+                            </option>
                         </Select>
                         <Button
                             mt="6"

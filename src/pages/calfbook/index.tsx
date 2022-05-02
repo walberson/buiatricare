@@ -14,7 +14,9 @@ import {
     Thead,
     Tr,
 } from '@chakra-ui/react'
-import { RiSearchLine } from 'react-icons/ri'
+import Router from 'next/dist/client/router'
+
+import { RiArrowLeftCircleLine, RiSearchLine } from 'react-icons/ri'
 
 export default function Calfbook() {
     const animals = [
@@ -26,16 +28,24 @@ export default function Calfbook() {
 
     return (
         <Stack direction="column" m="2rem" spacing="2rem">
-            <Box>
-                <Heading>Calfbook</Heading>
-                <Heading size="md" fontWeight="md">
-                    Seu livro de bolso para acompanhamento de bezerreiros
-                </Heading>
-            </Box>
+            <Stack spacing="2rem" direction="row" align="center">
+                <RiArrowLeftCircleLine size="40px" onClick={Router.back} />
+
+                <Box>
+                    <Stack spacing="0" direction="row">
+                        <Heading textColor="#EF8E9E">Calf</Heading>
+                        <Heading color="#7EBAAD">Book</Heading>
+                    </Stack>
+                    <Heading size="md" fontWeight="md">
+                        Seu livro de bolso para acompanhamento de bezerreiros
+                    </Heading>
+                </Box>
+            </Stack>
             <Stack direction="row" m="2rem" spacing="2rem">
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents="none"
+                        // eslint-disable-next-line react/no-children-prop
                         children={<RiSearchLine color="gray.300" />}
                     />
                     <Input type="search" placeholder="Buscar bezerro" />

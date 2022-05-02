@@ -10,7 +10,9 @@ import {
     ListItem,
 } from '@chakra-ui/react'
 import { Step, Steps, useSteps } from 'chakra-ui-steps'
+import Router from 'next/dist/client/router'
 import { useEffect, useState } from 'react'
+import { RiArrowLeftCircleLine } from 'react-icons/ri'
 
 interface stepsProps {
     label: string
@@ -103,29 +105,29 @@ export default function Apgar() {
     }
 
     return (
-        <Stack
-            align="center"
-            justify="center"
-            margin="8"
-            direction="column"
-            spacing="4"
-        >
-            <Box boxSize="40">
-                <Image alt="Logo small" src="/logoSmall.png" />
-            </Box>
-            <Stack direction="row" spacing="2">
-                <Heading color="#EF8E9E">Escore</Heading>
-                <Heading color="#7EBAAD">APGAR</Heading>
+        <Stack justify="center" margin="8" direction="column" spacing="4">
+            <Stack spacing="2rem" direction="row" align="center">
+                <RiArrowLeftCircleLine size="3rem" onClick={Router.back} />
+
+                <Box>
+                    <Stack spacing="0" direction="row">
+                        <Heading textColor="#EF8E9E">APGAR</Heading>
+                        <Heading color="#7EBAAD">Score</Heading>
+                    </Stack>
+                    <Heading size="md" fontWeight="md">
+                        Avalie a vitalidade do seu bezerro em poucos cliques
+                    </Heading>
+                </Box>
             </Stack>
 
-            <Text textAlign="justify" maxWidth="720">
+            <Text textAlign="justify">
                 O escore Apgar deve ser realizada no primeiro, quinto e décimo
                 minutos de vida após o nascimento. Appearance, Pulse, Grimace,
                 Activity e Respiration. Em Português, Aparência, Pulso,
                 Gesticulação, Atividade, Respiração.
             </Text>
-            <VStack width="100%" maxW="768px">
-                <Steps orientation="vertical" activeStep={activeStep}>
+            <VStack width="100%">
+                <Steps orientation="horizontal" activeStep={activeStep}>
                     {steps.map(
                         ({ label, description, option1, option2, option3 }) => (
                             <Step label={label} key={label}>
